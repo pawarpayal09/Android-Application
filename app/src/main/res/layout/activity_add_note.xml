@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F9FA"
+    android:padding="16dp">
+
+    <!-- Center Card (INCREASED SIZE) -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:padding="30dp"
+        android:background="#FFFFFF"
+        android:elevation="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <!-- Title -->
+        <TextView
+            android:text="Add / Edit Note"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#6200EE"
+            android:layout_gravity="center"
+            android:layout_marginBottom="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- Note Title -->
+        <EditText
+            android:id="@+id/titleEditText"
+            android:hint="Enter Title"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:padding="14dp"
+            android:background="#F5F5F5"
+            android:layout_marginBottom="15dp"/>
+
+        <!-- Note Description -->
+        <EditText
+            android:id="@+id/descEditText"
+            android:hint="Enter Description"
+            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:padding="14dp"
+            android:background="#F5F5F5"
+            android:layout_marginBottom="25dp"
+            android:gravity="top"/>
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/saveBtn"
+            android:text="Save Note"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:backgroundTint="#6200EE"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+</FrameLayout>

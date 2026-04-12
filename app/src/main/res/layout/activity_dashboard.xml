@@ -1,0 +1,112 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#F4F6FB"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- HEADER -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#6200EE"
+        android:padding="12dp">
+
+        <TextView
+            android:text="Smart Notes"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/favPageBtn"
+            android:src="@android:drawable/btn_star_big_on"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="100dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:tint="#FFD700" />
+
+        <ImageView
+            android:id="@+id/recycleBtn"
+            android:src="@android:drawable/ic_menu_delete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:tint="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/menuBtn"
+            android:src="@android:drawable/ic_menu_more"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:tint="#FFFFFF" />
+    </RelativeLayout>
+
+    <!-- GRID CARDS -->
+    <GridLayout
+        android:columnCount="2"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/notesCard"
+            android:text="📒 Notes"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:backgroundTint="#7E57C2"
+            android:elevation="6dp"
+            android:layout_margin="8dp"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_columnWeight="1"/>
+
+        <Button
+            android:id="@+id/cameraCard"
+            android:text="📷 Camera"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:backgroundTint="#26A69A"
+            android:elevation="6dp"
+            android:layout_margin="8dp"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_columnWeight="1"/>
+
+        <Button
+            android:id="@+id/audioCard"
+            android:text="🎤 Audio"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:backgroundTint="#FFA726"
+            android:elevation="6dp"
+            android:layout_margin="8dp"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_columnWeight="1"/>
+
+        <Button
+            android:id="@+id/tableCard"
+            android:text="📊 Table"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:backgroundTint="#66BB6A"
+            android:elevation="6dp"
+            android:layout_margin="8dp"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_columnWeight="1"/>
+    </GridLayout>
+
+</LinearLayout>

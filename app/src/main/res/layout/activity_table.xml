@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F6FB"
+    android:padding="16dp">
+
+    <!-- CENTER CARD -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- HEADER -->
+        <TextView
+            android:text="📊 Notes Table"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#6200EE"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- TABLE -->
+        <TableLayout
+            android:stretchColumns="*"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- HEADER ROW -->
+            <TableRow
+                android:background="#6200EE"
+                android:padding="8dp">
+
+                <TextView
+                    android:text="ID"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:text="Title"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:padding="10dp"/>
+            </TableRow>
+
+            <!-- ROW 1 -->
+            <TableRow
+                android:background="#F5F5F5">
+
+                <TextView
+                    android:text="1"
+                    android:padding="10dp"
+                    android:textColor="#000"/>
+
+                <TextView
+                    android:text="Sample Note"
+                    android:padding="10dp"
+                    android:textColor="#000"/>
+            </TableRow>
+
+            <!-- ROW 2 -->
+            <TableRow>
+
+                <TextView
+                    android:text="2"
+                    android:padding="10dp"
+                    android:textColor="#000"/>
+
+                <TextView
+                    android:text="Demo Task"
+                    android:padding="10dp"
+                    android:textColor="#000"/>
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

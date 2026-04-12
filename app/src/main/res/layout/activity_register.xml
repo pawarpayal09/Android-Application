@@ -1,0 +1,112 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F6FA">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#6200EE"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:text="Smart Notes"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <!-- BIGGER CARD -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginTop="150dp"
+        android:padding="30dp"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:elevation="10dp">
+
+        <TextView
+            android:text="Register"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#333"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"/>
+
+        <EditText
+            android:id="@+id/regName"
+            android:hint="Full Name"
+            android:textSize="16sp"
+            android:padding="14dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/regUsername"
+            android:hint="Username"
+            android:textSize="16sp"
+            android:padding="14dp"
+            android:layout_marginTop="15dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <EditText
+                android:id="@+id/regPassword"
+                android:hint="Password"
+                android:textSize="16sp"
+                android:inputType="textPassword"
+                android:padding="14dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/togglePassword"
+                android:src="@android:drawable/ic_menu_view"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/registerBtn"
+            android:text="REGISTER"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:backgroundTint="#6200EE"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"/>
+
+        <TextView
+            android:id="@+id/goToLogin"
+            android:text="Already have account? Login"
+            android:textSize="14sp"
+            android:textColor="#6200EE"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

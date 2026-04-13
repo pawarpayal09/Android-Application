@@ -20,7 +20,7 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var db: UserDatabaseHelper
 
     var isPasswordVisible = false
-    var mediaPlayer: MediaPlayer? = null   // 🎵 audio
+    var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,12 +48,36 @@ class RegisterActivity : AppCompatActivity() {
 
         registerBtn.setOnClickListener {
 
-            val n = name.text.toString()
-            val u = username.text.toString()
-            val p = password.text.toString()
+            val n = name.text.toString().trim()
+            val u = username.text.toString().trim()
+            val p = password.text.toString().trim()
 
-            if (n.isEmpty() || u.isEmpty() || p.isEmpty()) {
-                Toast.makeText(this, "Fill all fields", Toast.LENGTH_SHORT).show()
+            // ✅ VALIDATIONS
+
+            if (n.isEmpty()) {
+                name.error = "Enter full name"
+                name.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (n.length < 3) {
+                name.error = "Name must be at least 3 characters"
+                name.requestFocus()
+                return@setOnClickListener
+            }
+
+            // STRONG PASSWORD VALIDATION
+            if (p.isEmpty()) {
+                password.error = "Enter password"
+                password.requestFocus()
+                return@setOnClickListener
+            }
+
+            val passwordPattern = Regex("^(?=.*[A-Z])(?=.*\\d).{6,}$")
+
+            if (!passwordPattern.matches(p)) {
+                password.error = "Password must contain:\n• 1 Uppercase\n• 1 Number\n• Min 6 characters"
+                password.requestFocus()
                 return@setOnClickListener
             }
 
@@ -71,8 +95,10 @@ class RegisterActivity : AppCompatActivity() {
                     finish()
 
                 }, 2000)
-            }
 
+            } else {
+                Toast.makeText(this, "Username already exists!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         goToLogin.setOnClickListener {
@@ -80,7 +106,6 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    // 🎵 PLAY SOUND
     private fun playSound(soundRes: Int) {
         mediaPlayer?.release()
         mediaPlayer = MediaPlayer.create(this, soundRes)

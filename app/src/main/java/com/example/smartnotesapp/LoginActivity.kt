@@ -13,6 +13,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import android.os.Handler
+import android.util.Patterns
 
 class LoginActivity : AppCompatActivity() {
 
@@ -24,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var db: UserDatabaseHelper
 
     var isPasswordVisible = false
-    var mediaPlayer: MediaPlayer? = null   // 🎵 audio player
+    var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,11 +52,27 @@ class LoginActivity : AppCompatActivity() {
 
         loginBtn.setOnClickListener {
 
-            val user = username.text.toString()
-            val pass = password.text.toString()
+            val user = username.text.toString().trim()
+            val pass = password.text.toString().trim()
 
-            if (user.isEmpty() || pass.isEmpty()) {
-                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+            // ✅ VALIDATION ADDED
+            if (user.isEmpty()) {
+                username.error = "Enter username"
+                username.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (pass.isEmpty()) {
+                password.error = "Enter password"
+                password.requestFocus()
+                return@setOnClickListener
+            }
+
+            val passwordPattern = Regex("^(?=.*[A-Z])(?=.*\\d).{6,}$")
+
+            if (!passwordPattern.matches(pass)) {
+                password.error = "Invalid password format"
+                password.requestFocus()
                 return@setOnClickListener
             }
 
@@ -64,21 +81,24 @@ class LoginActivity : AppCompatActivity() {
             if (isValid) {
 
                 val pref = getSharedPreferences("user_session", MODE_PRIVATE)
-                val editor = pref.edit()
-                editor.putString("username", user)
-                editor.apply()
+                pref.edit().putString("username", user).apply()
 
                 playSound(R.raw.login_success)
 
-                // ⏱ WAIT FOR AUDIO TO COMPLETE
                 Handler(mainLooper).postDelayed({
 
                     showLoginNotification()
-
                     startActivity(Intent(this, DashboardActivity::class.java))
                     finish()
 
                 }, 2000)
+
+            } else {
+                Toast.makeText(
+                    this,
+                    "Invalid username or password",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 
@@ -87,7 +107,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    // 🎵 FUNCTION TO PLAY SOUND
     private fun playSound(soundRes: Int) {
         mediaPlayer?.release()
         mediaPlayer = MediaPlayer.create(this, soundRes)

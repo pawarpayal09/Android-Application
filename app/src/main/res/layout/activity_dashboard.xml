@@ -1,57 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#F4F6FB"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- HEADER -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#6200EE"
-        android:padding="12dp">
-
-        <TextView
-            android:text="Smart Notes"
-            android:textColor="#FFFFFF"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <ImageView
-            android:id="@+id/favPageBtn"
-            android:src="@android:drawable/btn_star_big_on"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="100dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            app:tint="#FFD700" />
-
-        <ImageView
-            android:id="@+id/recycleBtn"
-            android:src="@android:drawable/ic_menu_delete"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            app:tint="#FFFFFF" />
-
-        <ImageView
-            android:id="@+id/menuBtn"
-            android:src="@android:drawable/ic_menu_more"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            app:tint="#FFFFFF" />
-    </RelativeLayout>
+    <!-- 🔥 COMMON HEADER -->
+    <include layout="@layout/header_layout" />
 
     <!-- GRID CARDS -->
     <GridLayout
@@ -107,6 +63,7 @@
             android:layout_width="0dp"
             android:layout_height="160dp"
             android:layout_columnWeight="1"/>
+
     </GridLayout>
 
 </LinearLayout>

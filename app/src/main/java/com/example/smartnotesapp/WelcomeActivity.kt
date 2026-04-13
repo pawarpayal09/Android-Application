@@ -36,7 +36,7 @@ class WelcomeActivity : AppCompatActivity() {
                     loadingText.text = "Loading... $progressValue%"
                 }
 
-                Thread.sleep(80)
+                Thread.sleep(150)
             }
 
             handler.post {

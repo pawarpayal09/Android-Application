@@ -19,12 +19,10 @@ import android.content.SharedPreferences
 class DashboardActivity : AppCompatActivity() {
         private val CAMERA_REQUEST = 200
         private val CAMERA_PERMISSION_CODE = 201
-
         lateinit var notesCard: Button
         lateinit var cameraCard: Button
         lateinit var audioCard: Button
         lateinit var tableCard: Button
-
         lateinit var session: SharedPreferences
         lateinit var db: DatabaseHelper
 
@@ -86,7 +84,7 @@ class DashboardActivity : AppCompatActivity() {
 
                     "Profile" -> showProfile()
 
-                    "Settings" -> showSettings()   // ✅ FIX ADDED
+                    "Settings" -> showSettings()
 
                     "Logout" -> {
                         val editor = session.edit()
@@ -106,7 +104,8 @@ class DashboardActivity : AppCompatActivity() {
         // ⭐ PROFILE (WORKING)
         private fun showProfile() {
 
-            val username = session.getString("username", "")
+            // ✅ FIX APPLIED
+            val username = session.getString("username", "")?.trim()
 
             if (username.isNullOrEmpty()) {
                 Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show()

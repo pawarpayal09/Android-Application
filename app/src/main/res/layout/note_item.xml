@@ -1,75 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:layout_height="wrap_content">
 
-    <!-- CARD CONTAINER -->
+    <!-- ORIGINAL CONTENT -->
     <LinearLayout
-        android:orientation="vertical"
-        android:background="#FFFFFF"
-        android:elevation="8dp"
-        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="8dp">
 
-        <!-- TITLE -->
-        <TextView
-            android:id="@+id/titleText"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#212121"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <!-- DESCRIPTION -->
-        <TextView
-            android:id="@+id/descText"
-            android:textSize="14sp"
-            android:textColor="#555555"
-            android:layout_marginTop="6dp"
-            android:maxLines="3"
-            android:ellipsize="end"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <!-- IMAGE -->
-        <ImageView
-            android:id="@+id/noteImage"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="10dp"
-            android:visibility="gone" />
-
-        <!-- ACTION ROW (MERGED + CLEAN) -->
+        <!-- CARD CONTAINER -->
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp"
-            android:gravity="end"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:elevation="8dp"
+            android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- SHARE BUTTON -->
-            <ImageView
-                android:id="@+id/shareBtn"
-                android:src="@android:drawable/ic_menu_share"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_marginEnd="20dp"
-                app:tint="#6200EE" />
+            <!-- TITLE -->
+            <TextView
+                android:id="@+id/titleText"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#212121"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-            <!-- FAVORITE BUTTON -->
+            <!-- DESCRIPTION -->
+            <TextView
+                android:id="@+id/descText"
+                android:textSize="14sp"
+                android:textColor="#555555"
+                android:layout_marginTop="6dp"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!-- IMAGE -->
             <ImageView
-                android:id="@+id/favBtn"
-                android:src="@android:drawable/btn_star_big_off"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:tint="#B0B0B0" />
+                android:id="@+id/noteImage"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="10dp"
+                android:visibility="gone" />
+
+            <!-- ACTION ROW -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp"
+                android:gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- SHARE BUTTON -->
+                <ImageView
+                    android:id="@+id/shareBtn"
+                    android:src="@android:drawable/ic_menu_share"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginEnd="20dp"
+                    app:tint="#6200EE" />
+
+                <!-- FAVORITE BUTTON -->
+                <ImageView
+                    android:id="@+id/favBtn"
+                    android:src="@android:drawable/btn_star_big_off"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:tint="#B0B0B0" />
+            </LinearLayout>
+
         </LinearLayout>
-
     </LinearLayout>
 
 </LinearLayout>

@@ -4,15 +4,10 @@
     android:layout_height="match_parent"
     android:background="#F4F6FB">
 
-    <!-- 🔷 TOP HEADER -->
-    <LinearLayout
-        android:id="@+id/header"
-        android:orientation="vertical"
-        android:background="#6200EE"
-        android:padding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </LinearLayout>
+    <!-- ✅ COMMON HEADER -->
+    <include
+        android:id="@+id/headerLayout"
+        layout="@layout/header_layout" />
 
     <!-- 🔍 SEARCH CARD -->
     <LinearLayout
@@ -20,7 +15,7 @@
         android:background="#FFFFFF"
         android:elevation="6dp"
         android:padding="8dp"
-        android:layout_below="@id/header"
+        android:layout_below="@id/headerLayout"
         android:layout_margin="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -36,7 +31,7 @@
     <!-- 📋 NOTES LIST -->
     <ListView
         android:id="@+id/listView"
-        android:layout_below="@id/header"
+        android:layout_below="@id/headerLayout"
         android:layout_above="@id/addNoteBtn"
         android:layout_marginTop="80dp"
         android:layout_width="match_parent"
@@ -45,6 +40,7 @@
         android:dividerHeight="12dp"
         android:padding="12dp" />
 
+    <!-- EMPTY TEXT -->
     <TextView
         android:id="@+id/emptyText"
         android:text="No Notes Found"

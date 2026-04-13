@@ -4,24 +4,10 @@
     android:layout_height="match_parent"
     android:background="#F4F6FB">
 
-    <!-- HEADER -->
-    <LinearLayout
-        android:id="@+id/header"
-        android:orientation="horizontal"
-        android:background="#6200EE"
-        android:padding="16dp"
-        android:gravity="center_vertical"
-        android:layout_width="match_parent"
-        android:layout_height="60dp">
-
-        <TextView
-            android:text="⭐ Favorite Notes"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+    <!-- COMMON HEADER -->
+    <include
+        android:id="@+id/headerLayout"
+        layout="@layout/header_layout" />
 
     <!-- EMPTY MESSAGE -->
     <TextView
@@ -31,14 +17,14 @@
         android:textColor="#888"
         android:gravity="center"
         android:visibility="gone"
-        android:layout_below="@id/header"
+        android:layout_below="@id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
     <!-- LIST -->
     <ListView
         android:id="@+id/favListView"
-        android:layout_below="@id/header"
+        android:layout_below="@id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@android:color/transparent"

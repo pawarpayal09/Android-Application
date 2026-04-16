@@ -11,7 +11,7 @@ import android.util.Base64
 
 class NoteAdapter(
     val context: Context,
-    var list: ArrayList<NoteModel>,   // 🔥 changed val → var (important)
+    var list: ArrayList<NoteModel>,
     val db: DatabaseHelper,
     val refresh: () -> Unit
 ) : BaseAdapter() {
@@ -35,7 +35,6 @@ class NoteAdapter(
 
         title.text = note.title
 
-        // ✅ IMAGE NOTE (FIXED SAFELY)
         if (note.title == "Image Note" && note.description.isNotEmpty()) {
 
             desc.visibility = View.GONE
@@ -58,7 +57,7 @@ class NoteAdapter(
             desc.text = note.description
         }
 
-        // ⭐ FAVORITE STATUS
+        // FAVORITE STATUS
         if (note.isFavorite == 1) {
             favBtn.setImageResource(android.R.drawable.btn_star_big_on)
             favBtn.setColorFilter(android.graphics.Color.parseColor("#FFD700"))
@@ -67,7 +66,7 @@ class NoteAdapter(
             favBtn.setColorFilter(android.graphics.Color.GRAY)
         }
 
-        // ⭐ FAVORITE CLICK
+        // FAVORITE CLICK
         favBtn.setOnClickListener {
 
             note.isFavorite = if (note.isFavorite == 1) 0 else 1
@@ -83,7 +82,7 @@ class NoteAdapter(
             refresh()
         }
 
-        // 📤 SHARE BUTTON
+        // SHARE BUTTON
         shareBtn.setOnClickListener {
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"
@@ -94,7 +93,7 @@ class NoteAdapter(
             context.startActivity(Intent.createChooser(shareIntent, "Share Note"))
         }
 
-        // 📌 POPUP MENU
+        // POPUP MENU
         view.setOnClickListener {
 
             val popup = PopupMenu(context, view)
@@ -156,11 +155,10 @@ class NoteAdapter(
         return view
     }
 
-    // 🗑 DELETE → RECYCLE BIN
+    // DELETE → RECYCLE BIN
     private fun showDeleteDialog(note: NoteModel) {
 
-        val builder = AlertDialog.Builder(context)
-
+        val builder = AlertDialog.Builder(context, R.style.CustomDialogTheme)
         builder.setTitle("Delete Note")
         builder.setMessage("Are you sure you want to delete this note?")
 
@@ -181,7 +179,7 @@ class NoteAdapter(
         builder.show()
     }
 
-    // 🔥 BASE64 → BITMAP (FIXED)
+    // BASE64 → BITMAP (FIXED)
     private fun base64ToBitmap(base64Str: String): android.graphics.Bitmap? {
         return try {
             val decodedBytes = Base64.decode(base64Str, Base64.DEFAULT)

@@ -31,7 +31,7 @@ class RecycleAdapter(
 
         title.text = note.title
 
-        // ✅ FIXED LOGIC FOR IMAGE
+        // FIXED LOGIC FOR IMAGE
         if (note.title == "Image Note" && note.description.isNotEmpty()) {
 
             desc.visibility = View.GONE

@@ -126,7 +126,7 @@ class AddNoteActivity : AppCompatActivity() {
             val name = cursor.getString(0)
             val user = cursor.getString(1)
 
-            AlertDialog.Builder(this)
+            AlertDialog.Builder(this, R.style.CustomDialogTheme)
                 .setTitle("User Profile")
                 .setMessage("Name: $name\nUsername: $user")
                 .setPositiveButton("OK", null)
@@ -147,7 +147,7 @@ class AddNoteActivity : AppCompatActivity() {
             "About App"
         )
 
-        AlertDialog.Builder(this)
+        AlertDialog.Builder(this, R.style.CustomDialogTheme)
             .setTitle("Settings")
             .setItems(options) { _, which ->
 
@@ -160,7 +160,7 @@ class AddNoteActivity : AppCompatActivity() {
                     }
 
                     1 -> {
-                        AlertDialog.Builder(this)
+                        AlertDialog.Builder(this, R.style.CustomDialogTheme)
                             .setTitle("About Smart Notes")
                             .setMessage(
                                 "Smart Notes App\n\n" +

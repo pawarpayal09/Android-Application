@@ -46,12 +46,12 @@ class RecycleBinActivity : AppCompatActivity() {
             Toast.makeText(this, "Recycle Bin is empty", Toast.LENGTH_SHORT).show()
         }
 
-        // ✅ USE RecycleAdapter (NOT NoteAdapter)
+        // USE RecycleAdapter (NOT NoteAdapter)
         val adapter = RecycleAdapter(this, notesList)
 
         listView.adapter = adapter
 
-        // ✅ CLICK LISTENER (IMPORTANT)
+        // CLICK LISTENER (IMPORTANT)
         listView.setOnItemClickListener { _, _, position, _ ->
             val selectedNote = notesList[position]
             showOptionsDialog(selectedNote.id)
@@ -63,7 +63,7 @@ class RecycleBinActivity : AppCompatActivity() {
 
         val options = arrayOf("Restore Note", "Delete Permanently")
 
-        android.app.AlertDialog.Builder(this)
+        android.app.AlertDialog.Builder(this, R.style.CustomDialogTheme)
             .setTitle("Choose Action")
             .setItems(options) { _, which ->
 
@@ -131,7 +131,7 @@ class RecycleBinActivity : AppCompatActivity() {
             val name = cursor.getString(0)
             val user = cursor.getString(1)
 
-            android.app.AlertDialog.Builder(this)
+            android.app.AlertDialog.Builder(this, R.style.CustomDialogTheme)
                 .setTitle("User Profile")
                 .setMessage("Name: $name\nUsername: $user")
                 .setPositiveButton("OK", null)
@@ -153,7 +153,7 @@ class RecycleBinActivity : AppCompatActivity() {
             "About App"
         )
 
-        android.app.AlertDialog.Builder(this)
+        android.app.AlertDialog.Builder(this, R.style.CustomDialogTheme)
             .setTitle("Settings")
             .setItems(options) { _, which ->
 
@@ -174,7 +174,7 @@ class RecycleBinActivity : AppCompatActivity() {
                     }
 
                     2 -> {
-                        android.app.AlertDialog.Builder(this)
+                        android.app.AlertDialog.Builder(this, R.style.CustomDialogTheme)
                             .setTitle("About")
                             .setMessage("Smart Notes App\nDeveloped by Payal Pawar")
                             .setPositiveButton("OK", null)

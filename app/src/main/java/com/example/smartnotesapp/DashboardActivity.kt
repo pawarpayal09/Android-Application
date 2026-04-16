@@ -60,7 +60,7 @@ class DashboardActivity : AppCompatActivity() {
             tableCard.setOnClickListener {
                 val options = arrayOf("To-Do List", "Set Reminder")
 
-                AlertDialog.Builder(this)
+                AlertDialog.Builder(this, R.style.CustomDialogTheme)
                     .setTitle("Choose Option")
                     .setItems(options) { _, which ->
                         if (which == 0) showTableDialog()
@@ -119,7 +119,7 @@ class DashboardActivity : AppCompatActivity() {
                 val name = cursor.getString(0)
                 val user = cursor.getString(1)
 
-                AlertDialog.Builder(this)
+                AlertDialog.Builder(this, R.style.CustomDialogTheme)
                     .setTitle("User Profile")
                     .setMessage("Name: $name\nUsername: $user")
                     .setPositiveButton("OK", null)
@@ -174,7 +174,7 @@ class DashboardActivity : AppCompatActivity() {
             if (!result.isNullOrEmpty()) {
                 val spokenText = result[0]
 
-                AlertDialog.Builder(this)
+                AlertDialog.Builder(this, R.style.CustomDialogTheme)
                     .setTitle("Save Voice Note")
                     .setMessage(spokenText)
                     .setPositiveButton("Save") { _, _ ->
@@ -193,7 +193,7 @@ class DashboardActivity : AppCompatActivity() {
 
             val base64Image = bitmapToBase64(photo)
 
-            AlertDialog.Builder(this)
+            AlertDialog.Builder(this, R.style.CustomDialogTheme)
                 .setTitle("Save Image Note")
                 .setMessage("Do you want to save this image?")
                 .setPositiveButton("Save") { _, _ ->
@@ -216,7 +216,7 @@ class DashboardActivity : AppCompatActivity() {
     // TABLE
     private fun showTableDialog() {
 
-        val builder = AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(this, R.style.CustomDialogTheme)
         builder.setTitle("To-Do List")
 
         val mainLayout = LinearLayout(this)
@@ -283,7 +283,7 @@ class DashboardActivity : AppCompatActivity() {
     // REMINDER DIALOG
     private fun showReminderDialog() {
 
-        val builder = AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(this, R.style.CustomDialogTheme)
         builder.setTitle("Set Reminder")
 
         val input = EditText(this)
@@ -379,7 +379,7 @@ class DashboardActivity : AppCompatActivity() {
             "About App"
         )
 
-        AlertDialog.Builder(this)
+        AlertDialog.Builder(this, R.style.CustomDialogTheme)
             .setTitle("Settings")
             .setItems(options) { _, which ->
 
@@ -398,7 +398,7 @@ class DashboardActivity : AppCompatActivity() {
 
                     // CLEAR NOTES
                     1 -> {
-                        AlertDialog.Builder(this)
+                        AlertDialog.Builder(this, R.style.CustomDialogTheme)
                             .setTitle("Confirm")
                             .setMessage("Delete all notes?")
                             .setPositiveButton("Yes") { _, _ ->
@@ -411,7 +411,7 @@ class DashboardActivity : AppCompatActivity() {
 
                     // ABOUT
                     2 -> {
-                        AlertDialog.Builder(this)
+                        AlertDialog.Builder(this, R.style.CustomDialogTheme)
                             .setTitle("About Smart Notes")
                             .setMessage(
                                 "Smart Notes App\n\n" +

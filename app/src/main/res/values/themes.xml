@@ -5,15 +5,27 @@
         <item name="colorPrimaryDark">#3700B3</item>
         <item name="colorAccent">#03DAC5</item>
 
-        <!-- ✅ APPLY CUSTOM DIALOG THEME -->
         <item name="alertDialogTheme">@style/CustomAlertDialog</item>
     </style>
 
-    <!-- ✅ CUSTOM ALERT DIALOG STYLE -->
     <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">#6200EE</item>
         <item name="android:textColorPrimary">#000000</item>
         <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="CustomDialogTheme" parent="Theme.Material3.Light.Dialog.Alert">
+
+        <!-- Background -->
+        <item name="android:windowBackground">@drawable/dialog_bg</item>
+
+        <!-- Title Color -->
+        <item name="android:textColorPrimary">@color/purple_700</item>
+
+        <!-- Buttons -->
+        <item name="colorPrimary">@color/purple_700</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+
     </style>
 
 </resources>

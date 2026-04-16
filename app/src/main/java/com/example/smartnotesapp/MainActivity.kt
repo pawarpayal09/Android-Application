@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 
             val note = filteredList[position]
 
-            AlertDialog.Builder(this)
+            AlertDialog.Builder(this, R.style.CustomDialogTheme)
                 .setTitle("Delete Note")
                 .setMessage("Are you sure you want to delete this note?")
                 .setPositiveButton("Yes") { _, _ ->
@@ -221,7 +221,7 @@ class MainActivity : AppCompatActivity() {
             val name = cursor.getString(0)
             val user = cursor.getString(1)
 
-            AlertDialog.Builder(this)
+            AlertDialog.Builder(this, R.style.CustomDialogTheme)
                 .setTitle("User Profile")
                 .setMessage("Name: $name\nUsername: $user")
                 .setPositiveButton("OK", null)
@@ -242,7 +242,7 @@ class MainActivity : AppCompatActivity() {
             "About App"
         )
 
-        AlertDialog.Builder(this)
+        AlertDialog.Builder(this, R.style.CustomDialogTheme)
             .setTitle("Settings")
             .setItems(options) { _, which ->
 
@@ -255,7 +255,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     1 -> {
-                        AlertDialog.Builder(this)
+                        AlertDialog.Builder(this, R.style.CustomDialogTheme)
                             .setTitle("About Smart Notes")
                             .setMessage(
                                 "Smart Notes App\n\n" +

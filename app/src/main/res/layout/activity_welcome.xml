@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/splash_bg">
 
-    <!-- TOP SPACE (keeps image area clean) -->
+    <!-- TOP SPACE -->
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"

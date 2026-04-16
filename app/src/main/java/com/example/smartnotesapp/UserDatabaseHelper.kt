@@ -50,7 +50,7 @@ class UserDatabaseHelper(context: Context) :
         val db = readableDatabase
         return db.rawQuery(
             "SELECT name, username FROM users WHERE username=?",
-            arrayOf(username.trim())   // ✅ FIX APPLIED
+            arrayOf(username.trim())
         )
     }
 }

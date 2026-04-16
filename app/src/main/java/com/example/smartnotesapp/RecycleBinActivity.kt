@@ -21,7 +21,7 @@ class RecycleBinActivity : AppCompatActivity() {
         dbHelper = DatabaseHelper(this)
         session = getSharedPreferences("user_session", MODE_PRIVATE)
 
-        // ⭐ HEADER BUTTONS
+        // HEADER BUTTONS
         findViewById<ImageView>(R.id.favPageBtn).setOnClickListener {
             startActivity(Intent(this, FavoritesActivity::class.java))
         }
@@ -37,14 +37,55 @@ class RecycleBinActivity : AppCompatActivity() {
         loadRecycleData()
     }
 
-    // 📋 LOAD DATA
+    // LOAD DATA
     private fun loadRecycleData() {
-        val list = dbHelper.getDeletedNotes()   // make sure this function exists
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, list)
+
+        val notesList = dbHelper.getDeletedNotes()
+
+        if (notesList.isEmpty()) {
+            Toast.makeText(this, "Recycle Bin is empty", Toast.LENGTH_SHORT).show()
+        }
+
+        // ✅ USE RecycleAdapter (NOT NoteAdapter)
+        val adapter = RecycleAdapter(this, notesList)
+
         listView.adapter = adapter
+
+        // ✅ CLICK LISTENER (IMPORTANT)
+        listView.setOnItemClickListener { _, _, position, _ ->
+            val selectedNote = notesList[position]
+            showOptionsDialog(selectedNote.id)
+        }
     }
 
-    // ⭐ MENU
+    // RESTORE
+    private fun showOptionsDialog(noteId: Int) {
+
+        val options = arrayOf("Restore Note", "Delete Permanently")
+
+        android.app.AlertDialog.Builder(this)
+            .setTitle("Choose Action")
+            .setItems(options) { _, which ->
+
+                when (which) {
+
+                    0 -> {
+                        dbHelper.restoreNote(noteId)
+                        Toast.makeText(this, "Note Restored", Toast.LENGTH_SHORT).show()
+                        loadRecycleData()
+                    }
+
+                    1 -> {
+                        dbHelper.deleteNote(noteId)
+                        Toast.makeText(this, "Deleted Permanently", Toast.LENGTH_SHORT).show()
+                        loadRecycleData()
+                    }
+                }
+            }
+            .show()
+    }
+
+    // POPUP MENU
     private fun showPopupMenu(view: View) {
 
         val popup = PopupMenu(this, view)
@@ -72,7 +113,7 @@ class RecycleBinActivity : AppCompatActivity() {
         popup.show()
     }
 
-    // 👤 PROFILE
+    // PROFILE
     private fun showProfile() {
 
         val username = session.getString("username", "")?.trim()
@@ -103,7 +144,7 @@ class RecycleBinActivity : AppCompatActivity() {
         cursor.close()
     }
 
-    // ⚙ SETTINGS
+    // SETTINGS
     private fun showSettings() {
 
         val options = arrayOf(

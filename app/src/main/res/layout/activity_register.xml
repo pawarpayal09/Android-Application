@@ -1,46 +1,36 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F6FA">
+    android:background="@drawable/login_registration_bg">
 
-    <!-- Header -->
     <LinearLayout
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="70dp"
         android:background="#6200EE"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center_vertical"
+        android:paddingStart="16dp">
 
         <TextView
             android:text="Smart Notes"
             android:textColor="#FFFFFF"
-            android:textSize="30sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
+
 
     <!-- BIGGER CARD -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="150dp"
+        android:layout_below="@id/title"
+        android:layout_margin="25dp"
+        android:layout_marginTop="40dp"
         android:padding="30dp"
         android:orientation="vertical"
-        android:background="#FFFFFF"
         android:elevation="10dp">
-
-        <TextView
-            android:text="Register"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="#333"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginBottom="20dp"/>
 
         <EditText
             android:id="@+id/regName"

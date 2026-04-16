@@ -89,7 +89,7 @@ class FavoritesActivity : AppCompatActivity() {
         popup.show()
     }
 
-    // ⭐ PROFILE (FIXED)
+    // PROFILE
     private fun showProfile() {
 
         val session = getSharedPreferences("user_session", MODE_PRIVATE)
@@ -121,7 +121,7 @@ class FavoritesActivity : AppCompatActivity() {
         cursor.close()
     }
 
-    // ⭐ SETTINGS (SIMPLE VERSION)
+    // SETTINGS
     private fun showSettings() {
 
         val options = arrayOf(

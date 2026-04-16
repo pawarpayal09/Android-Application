@@ -6,10 +6,12 @@ import android.content.Intent
 import android.view.*
 import android.widget.*
 import androidx.appcompat.widget.PopupMenu
+import android.graphics.BitmapFactory
+import android.util.Base64
 
 class NoteAdapter(
     val context: Context,
-    val list: ArrayList<NoteModel>,
+    var list: ArrayList<NoteModel>,   // 🔥 changed val → var (important)
     val db: DatabaseHelper,
     val refresh: () -> Unit
 ) : BaseAdapter() {
@@ -20,7 +22,8 @@ class NoteAdapter(
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-        val view = LayoutInflater.from(context).inflate(R.layout.note_item, parent, false)
+        val view = convertView ?: LayoutInflater.from(context)
+            .inflate(R.layout.note_item, parent, false)
 
         val title = view.findViewById<TextView>(R.id.titleText)
         val desc = view.findViewById<TextView>(R.id.descText)
@@ -32,14 +35,19 @@ class NoteAdapter(
 
         title.text = note.title
 
-        // ✅ IMAGE NOTE
-        if (note.title == "Image Note") {
+        // ✅ IMAGE NOTE (FIXED SAFELY)
+        if (note.title == "Image Note" && note.description.isNotEmpty()) {
+
             desc.visibility = View.GONE
             image.visibility = View.VISIBLE
 
             try {
                 val bitmap = base64ToBitmap(note.description)
-                image.setImageBitmap(bitmap)
+                if (bitmap != null) {
+                    image.setImageBitmap(bitmap)
+                } else {
+                    image.visibility = View.GONE
+                }
             } catch (e: Exception) {
                 image.visibility = View.GONE
             }
@@ -50,31 +58,32 @@ class NoteAdapter(
             desc.text = note.description
         }
 
-        // ⭐ SHOW FAVORITE STATUS (VERY IMPORTANT)
+        // ⭐ FAVORITE STATUS
         if (note.isFavorite == 1) {
             favBtn.setImageResource(android.R.drawable.btn_star_big_on)
-            favBtn.setColorFilter(android.graphics.Color.parseColor("#FFD700")) // GOLD
+            favBtn.setColorFilter(android.graphics.Color.parseColor("#FFD700"))
         } else {
             favBtn.setImageResource(android.R.drawable.btn_star_big_off)
             favBtn.setColorFilter(android.graphics.Color.GRAY)
         }
 
-        // ⭐ FAVORITE CLICK (DIRECT BUTTON)
+        // ⭐ FAVORITE CLICK
         favBtn.setOnClickListener {
 
-            if (note.isFavorite == 1) {
-                note.isFavorite = 0
-                Toast.makeText(context, "Removed from Favorites", Toast.LENGTH_SHORT).show()
-            } else {
-                note.isFavorite = 1
-                Toast.makeText(context, "Added to Favorites ⭐", Toast.LENGTH_SHORT).show()
-            }
+            note.isFavorite = if (note.isFavorite == 1) 0 else 1
+
+            val msg = if (note.isFavorite == 1)
+                "Added to Favorites ⭐"
+            else
+                "Removed from Favorites"
+
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
 
             db.toggleFavorite(note.id, note.isFavorite)
             refresh()
         }
 
-        // 🔗 SHARE BUTTON
+        // 📤 SHARE BUTTON
         shareBtn.setOnClickListener {
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"
@@ -85,7 +94,7 @@ class NoteAdapter(
             context.startActivity(Intent.createChooser(shareIntent, "Share Note"))
         }
 
-        // ⭐ POPUP MENU (KEEPING YOUR ORIGINAL FEATURES)
+        // 📌 POPUP MENU
         view.setOnClickListener {
 
             val popup = PopupMenu(context, view)
@@ -125,13 +134,14 @@ class NoteAdapter(
 
                     "Favorite ⭐" -> {
 
-                        if (note.isFavorite == 1) {
-                            note.isFavorite = 0
-                            Toast.makeText(context, "Removed from Favorites", Toast.LENGTH_SHORT).show()
-                        } else {
-                            note.isFavorite = 1
-                            Toast.makeText(context, "Added to Favorites ⭐", Toast.LENGTH_SHORT).show()
-                        }
+                        note.isFavorite = if (note.isFavorite == 1) 0 else 1
+
+                        val msg = if (note.isFavorite == 1)
+                            "Added to Favorites ⭐"
+                        else
+                            "Removed from Favorites"
+
+                        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
 
                         db.toggleFavorite(note.id, note.isFavorite)
                         refresh()
@@ -146,7 +156,7 @@ class NoteAdapter(
         return view
     }
 
-    // 🗑 DELETE (RECYCLE BIN)
+    // 🗑 DELETE → RECYCLE BIN
     private fun showDeleteDialog(note: NoteModel) {
 
         val builder = AlertDialog.Builder(context)
@@ -171,9 +181,13 @@ class NoteAdapter(
         builder.show()
     }
 
-    // 📷 BASE64 → BITMAP
-    private fun base64ToBitmap(base64Str: String): android.graphics.Bitmap {
-        val decodedBytes = android.util.Base64.decode(base64Str, android.util.Base64.DEFAULT)
-        return android.graphics.BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+    // 🔥 BASE64 → BITMAP (FIXED)
+    private fun base64ToBitmap(base64Str: String): android.graphics.Bitmap? {
+        return try {
+            val decodedBytes = Base64.decode(base64Str, Base64.DEFAULT)
+            BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+        } catch (e: Exception) {
+            null
+        }
     }
 }

@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F6FB">
+    android:background="@drawable/login_registration_bg">
 
-    <!-- ✅ COMMON HEADER -->
+    <!-- COMMON HEADER -->
     <include
         android:id="@+id/headerLayout"
         layout="@layout/header_layout" />
 
-    <!-- 🔍 SEARCH CARD -->
+    <!-- SEARCH CARD -->
     <LinearLayout
         android:orientation="vertical"
         android:background="#FFFFFF"
@@ -28,17 +28,18 @@
             android:iconifiedByDefault="false"/>
     </LinearLayout>
 
-    <!-- 📋 NOTES LIST -->
+    <!-- NOTES LIST -->
     <ListView
         android:id="@+id/listView"
         android:layout_below="@id/headerLayout"
-        android:layout_above="@id/addNoteBtn"
         android:layout_marginTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@android:color/transparent"
         android:dividerHeight="12dp"
-        android:padding="12dp" />
+        android:padding="12dp"
+        android:clipToPadding="false"
+        android:paddingBottom="90dp"/>
 
     <!-- EMPTY TEXT -->
     <TextView
@@ -52,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>
 
-    <!-- ➕ FLOAT BUTTON -->
+    <!-- FLOAT BUTTON -->
     <Button
         android:id="@+id/addNoteBtn"
         android:layout_width="65dp"

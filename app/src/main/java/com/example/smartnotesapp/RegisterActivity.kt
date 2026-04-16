@@ -52,7 +52,7 @@ class RegisterActivity : AppCompatActivity() {
             val u = username.text.toString().trim()
             val p = password.text.toString().trim()
 
-            // ✅ VALIDATIONS
+            // VALIDATIONS
 
             if (n.isEmpty()) {
                 name.error = "Enter full name"

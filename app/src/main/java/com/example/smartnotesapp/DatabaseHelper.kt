@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.database.Cursor
 
 class DatabaseHelper(context: Context) :
-    SQLiteOpenHelper(context, "NotesDB", null, 3) {   // 🔼 version updated
+    SQLiteOpenHelper(context, "NotesDB", null, 3) {
 
     override fun onCreate(db: SQLiteDatabase) {
 
@@ -83,7 +83,7 @@ class DatabaseHelper(context: Context) :
                     cursor.getString(1),
                     cursor.getString(2),
                     cursor.getString(3),
-                    cursor.getInt(5)   // ⭐ ADD THIS LINE
+                    cursor.getInt(5)
                 )
                 list.add(note)
             } while (cursor.moveToNext())
@@ -207,7 +207,7 @@ class DatabaseHelper(context: Context) :
                     cursor.getString(1),
                     cursor.getString(2),
                     cursor.getString(3),
-                    cursor.getInt(5)   // ⭐ ADD THIS LINE
+                    cursor.getInt(5)
                 )
                 list.add(note)
             } while (cursor.moveToNext())

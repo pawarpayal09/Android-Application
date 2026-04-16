@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         val session = getSharedPreferences("user_session", MODE_PRIVATE)
 
-        // ⭐ HEADER BUTTONS
+        // HEADER BUTTONS
         favBtn.setOnClickListener {
             startActivity(Intent(this, FavoritesActivity::class.java))
         }
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         loadNotes()
 
-        // 🔍 SEARCH FUNCTION
+        // SEARCH FUNCTION
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        // 🗑 DELETE NOTE
+        // DELETE NOTE
         listView.setOnItemLongClickListener { _, _, position, _ ->
 
             val note = filteredList[position]
@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        // 📄 CLICK NOTE
+        // CLICK NOTE
         listView.setOnItemClickListener { _, _, position, _ ->
             val note = filteredList[position]
             Toast.makeText(this, note.title, Toast.LENGTH_SHORT).show()
@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
         loadNotes()
     }
 
-    // ✅ LOAD NOTES
+    // LOAD NOTES
     private fun loadNotes() {
         notesList = dbHelper.getAllNotes()
         filteredList.clear()
@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity() {
         updateList(filteredList)
     }
 
-    // ✅ UPDATE LIST VIEW
+    // UPDATE LIST VIEW
     private fun updateList(list: ArrayList<NoteModel>) {
 
         val adapter = NoteAdapter(
@@ -141,7 +141,7 @@ class MainActivity : AppCompatActivity() {
 
         listView.adapter = adapter
 
-        // ✅ SHOW / HIDE EMPTY MESSAGE
+        // SHOW / HIDE EMPTY MESSAGE
         if (list.isEmpty()) {
             emptyText.visibility = TextView.VISIBLE
             listView.visibility = ListView.GONE
@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // 🔔 NOTIFICATION
+    // NOTIFICATION
     private fun showNotification(title: String, message: String) {
 
         val channelId = "notes_channel"
@@ -202,7 +202,7 @@ class MainActivity : AppCompatActivity() {
         popup.show()
     }
 
-    // ⭐ PROFILE (FIXED)
+    // PROFILE
     private fun showProfile() {
 
         val session = getSharedPreferences("user_session", MODE_PRIVATE)
@@ -234,7 +234,7 @@ class MainActivity : AppCompatActivity() {
         cursor.close()
     }
 
-    // ⭐ SETTINGS (SIMPLE VERSION)
+    // SETTINGS
     private fun showSettings() {
 
         val options = arrayOf(

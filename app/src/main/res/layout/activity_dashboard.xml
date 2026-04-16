@@ -2,11 +2,11 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="#F4F6FB"
+    android:background="@drawable/login_registration_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 🔥 COMMON HEADER -->
+    <!-- COMMON HEADER -->
     <include layout="@layout/header_layout" />
 
     <!-- GRID CARDS -->
@@ -33,7 +33,7 @@
             android:text="📷 Camera"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            android:backgroundTint="#26A69A"
+            android:backgroundTint="#0EBCAC"
             android:elevation="6dp"
             android:layout_margin="8dp"
             android:layout_width="0dp"
@@ -57,7 +57,7 @@
             android:text="📊 Table"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            android:backgroundTint="#66BB6A"
+            android:backgroundTint="#C419D3"
             android:elevation="6dp"
             android:layout_margin="8dp"
             android:layout_width="0dp"

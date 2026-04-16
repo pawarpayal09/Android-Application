@@ -70,7 +70,7 @@ class DashboardActivity : AppCompatActivity() {
             }
         }
 
-        // ⭐ MENU
+        // POPUP MENU
         private fun showPopupMenu(view: View) {
 
             val popup = PopupMenu(this, view)
@@ -101,10 +101,9 @@ class DashboardActivity : AppCompatActivity() {
             popup.show()
         }
 
-        // ⭐ PROFILE (WORKING)
+        // PROFILE
         private fun showProfile() {
 
-            // ✅ FIX APPLIED
             val username = session.getString("username", "")?.trim()
 
             if (username.isNullOrEmpty()) {
@@ -133,7 +132,7 @@ class DashboardActivity : AppCompatActivity() {
             cursor.close()
         }
 
-        // ✅ FORCE FULL REFRESH
+        // FORCE FULL REFRESH
         private fun restartApp() {
             val intent = Intent(this, DashboardActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -141,7 +140,7 @@ class DashboardActivity : AppCompatActivity() {
             finish()
         }
 
-        // 📷 CAMERA
+        // CAMERA
         private fun openCamera() {
             if (checkSelfPermission(android.Manifest.permission.CAMERA)
                 != android.content.pm.PackageManager.PERMISSION_GRANTED) {
@@ -152,7 +151,7 @@ class DashboardActivity : AppCompatActivity() {
             }
         }
 
-        // 🎤 VOICE
+        // VOICE
         private fun startVoiceInput() {
             val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
@@ -168,7 +167,7 @@ class DashboardActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        // 🎤 VOICE NOTE
+        // VOICE NOTE
         if (requestCode == 100 && resultCode == RESULT_OK) {
             val result = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
 
@@ -187,7 +186,7 @@ class DashboardActivity : AppCompatActivity() {
             }
         }
 
-        // 📷 CAMERA IMAGE (🔥 FIX ADDED)
+        // CAMERA IMAGE
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
 
             val photo = data?.extras?.get("data") as Bitmap
@@ -214,7 +213,7 @@ class DashboardActivity : AppCompatActivity() {
             return Base64.encodeToString(stream.toByteArray(), Base64.DEFAULT)
         }
 
-    // 📊 TABLE
+    // TABLE
     private fun showTableDialog() {
 
         val builder = AlertDialog.Builder(this)
@@ -281,7 +280,7 @@ class DashboardActivity : AppCompatActivity() {
         builder.show()
     }
 
-    // 🔔 REMINDER DIALOG
+    // REMINDER DIALOG
     private fun showReminderDialog() {
 
         val builder = AlertDialog.Builder(this)
@@ -334,12 +333,12 @@ class DashboardActivity : AppCompatActivity() {
         builder.show()
     }
 
-    // 🔔 SET ALARM (FIXED)
+    // SET ALARM
     private fun setAlarm(calendar: Calendar, message: String) {
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
-        // ✅ FIX FOR ANDROID 12+
+        //  FIX FOR ANDROID 12+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             if (!alarmManager.canScheduleExactAlarms()) {
                 Toast.makeText(this, "Enable exact alarm permission in settings", Toast.LENGTH_LONG).show()
@@ -357,7 +356,7 @@ class DashboardActivity : AppCompatActivity() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        // ✅ SAFE METHOD
+        // SAFE METHOD
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
@@ -386,7 +385,7 @@ class DashboardActivity : AppCompatActivity() {
 
                 when (which) {
 
-                    // 🔔 NOTIFICATIONS
+                    // NOTIFICATIONS
                     0 -> {
                         val pref = getSharedPreferences("app_settings", MODE_PRIVATE)
                         val current = pref.getBoolean("notifications", true)
@@ -397,7 +396,7 @@ class DashboardActivity : AppCompatActivity() {
                         Toast.makeText(this, "Notifications $status", Toast.LENGTH_SHORT).show()
                     }
 
-                    // 🗑 CLEAR NOTES
+                    // CLEAR NOTES
                     1 -> {
                         AlertDialog.Builder(this)
                             .setTitle("Confirm")
@@ -410,7 +409,7 @@ class DashboardActivity : AppCompatActivity() {
                             .show()
                     }
 
-                    // ℹ ABOUT
+                    // ABOUT
                     2 -> {
                         AlertDialog.Builder(this)
                             .setTitle("About Smart Notes")

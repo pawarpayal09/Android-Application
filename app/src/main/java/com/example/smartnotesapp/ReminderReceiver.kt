@@ -13,12 +13,11 @@ class ReminderReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
 
-        // ✅ CHECK FIRST (IMPORTANT FIX)
+        // CHECK FIRST
         val pref = context.getSharedPreferences("app_settings", Context.MODE_PRIVATE)
         val isEnabled = pref.getBoolean("notifications", true)
 
-        if (!isEnabled) return   // 🚫 STOP NOTIFICATION IF OFF
-
+        if (!isEnabled) return
         val message = intent.getStringExtra("msg") ?: "Reminder!"
 
         val channelId = "reminder_channel_sound"
@@ -30,7 +29,6 @@ class ReminderReceiver : BroadcastReceiver() {
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        // ✅ Create channel (Android 8+)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             val audioAttributes = AudioAttributes.Builder()

@@ -15,7 +15,7 @@ class AddNoteActivity : AppCompatActivity() {
     lateinit var saveBtn: Button
     lateinit var dbHelper: DatabaseHelper
 
-    var noteId = -1   // 🔥 for edit
+    var noteId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +31,7 @@ class AddNoteActivity : AppCompatActivity() {
 
         val session = getSharedPreferences("user_session", MODE_PRIVATE)
 
-        // ⭐ HEADER BUTTONS
+        // HEADER BUTTONS
         favBtn.setOnClickListener {
             startActivity(Intent(this, FavoritesActivity::class.java))
         }
@@ -46,7 +46,7 @@ class AddNoteActivity : AppCompatActivity() {
 
         dbHelper = DatabaseHelper(this)
 
-        // 🔥 CHECK IF EDIT MODE
+        // CHECK IF EDIT MODE
         noteId = intent.getIntExtra("id", -1)
 
         if (noteId != -1) {
@@ -79,7 +79,7 @@ class AddNoteActivity : AppCompatActivity() {
         }
     }
 
-    // ⭐ POPUP MENU
+    // POPUP MENU
     private fun showPopupMenu(view: View, session: SharedPreferences) {
 
         val popup = PopupMenu(this, view)
@@ -107,7 +107,7 @@ class AddNoteActivity : AppCompatActivity() {
         popup.show()
     }
 
-    // ⭐ PROFILE (FIXED)
+    // PROFILE
     private fun showProfile() {
 
         val session = getSharedPreferences("user_session", MODE_PRIVATE)
@@ -139,7 +139,7 @@ class AddNoteActivity : AppCompatActivity() {
         cursor.close()
     }
 
-    // ⭐ SETTINGS (SIMPLE VERSION)
+    // SETTINGS
     private fun showSettings() {
 
         val options = arrayOf(

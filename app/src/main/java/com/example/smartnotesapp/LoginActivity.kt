@@ -13,7 +13,6 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import android.os.Handler
-import android.util.Patterns
 
 class LoginActivity : AppCompatActivity() {
 
@@ -39,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
 
         db = UserDatabaseHelper(this)
 
-        // 👁 PASSWORD TOGGLE
+        // PASSWORD TOGGLE
         togglePassword.setOnClickListener {
             if (isPasswordVisible) {
                 password.transformationMethod = PasswordTransformationMethod.getInstance()
@@ -55,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
             val user = username.text.toString().trim()
             val pass = password.text.toString().trim()
 
-            // ✅ VALIDATION ADDED
+            // VALIDATION ADDED
             if (user.isEmpty()) {
                 username.error = "Enter username"
                 username.requestFocus()
